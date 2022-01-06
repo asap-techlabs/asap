@@ -1,10 +1,10 @@
-const express = require ('express')
+import express from 'express'
 const app = express()
 
 app.get('/', (req, res) => {
   res.send('Hello')
 })
 
-app.listen(3000)
+app.listen(8000)
 
-console.log("server is running on localhost://3000")
+console.log("server is running on http://localhost:8000/")
