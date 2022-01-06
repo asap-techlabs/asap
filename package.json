@@ -1,0 +1,23 @@
+{
+  "name": "asap",
+  "version": "1.0.0",
+  "description": "This is the 1st repository for our app.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asap-techlabs/asap.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asap-techlabs/asap/issues"
+  },
+  "homepage": "https://github.com/asap-techlabs/asap#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
