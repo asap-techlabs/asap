@@ -3,6 +3,7 @@ This app is coded during the WD Techlabs program 2021/2022.
 
 It is a MERN app.
 
+
 To run the Node server go to the main folder and run
 
 `node index.js`
@@ -10,6 +11,10 @@ To run the Node server go to the main folder and run
 and then open in the browser on `http://localhost:8000/`
 
 For the frontend go to the folder `/frontend` and run
+
+`npm install` 
+
+to install dependencies and then, 
 
 `npm start`
 
