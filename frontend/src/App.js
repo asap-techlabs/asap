@@ -1,10 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import SearchAddress from './components/SearchAddress';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <Router>
+        <Routes>
+          {/* <Route exact path ="/" element={<Home/>} /> */}
+
+          <Route path ="/search" element={<SearchAddress/>} />
+        </Routes>
+      </Router>
+      {/* <SearchAddress/> */}
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -17,7 +28,7 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </header> */}
     </div>
   );
 }
