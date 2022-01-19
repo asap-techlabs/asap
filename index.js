@@ -1,5 +1,14 @@
 import express from 'express'
+import mongoose from "mongoose";
+
 const app = express()
+
+mongoose.connect('mongodb://localhost/asap')
+mongoose.connection.once('open', function(){
+  console.log('Connection Successful')
+}).on('Error', function(error){
+  console.log('Connection Failure', error)
+});
 
 app.get('/', (req, res) => {
   res.send('Hello')
@@ -11,3 +20,4 @@ app.get('/Anshul', (req, res) => {
 app.listen(8000)
 
 console.log("server is running on http://localhost:8000/")
+
