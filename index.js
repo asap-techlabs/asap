@@ -1,7 +1,7 @@
 import express from 'express'
 import mongoose from "mongoose";
 
-//Test run 
+//Test run
 
 import routes from './routes/router.js'
 
@@ -28,7 +28,8 @@ app.get('/', (req, res) => {
 app.get('/Anshul', (req, res) => {
   res.send('Anshul is great')
 })
-app.listen(8000)
+// app.listen(8000)
+// I had to comment this line as it was conflicting with the other port.
 
 console.log("server is running on http://localhost:8000/")
 
