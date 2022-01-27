@@ -1,9 +1,7 @@
 import express from 'express'
 import mongoose from "mongoose";
-
-//Test run 
-
 import routes from './routes/router.js'
+
 
 const app = express()
 const port = process.env.PORT || 8000;
