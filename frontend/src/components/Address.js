@@ -12,9 +12,10 @@ const Address = () => {
 
   function onSuggectionChange(value) {
     console.log(value);
+    // maybe event.preventDefault()
   }
 
-    function preprocessHook(value) {
+  function preprocessHook(value) {
     return `${value}, Hamburg, Germany`
   }
 

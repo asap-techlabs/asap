@@ -4,15 +4,15 @@ const SearchAddress = () => {
   return (
   <div className="container-md" style={{marginTop: "30px"}}>
     <h2 className="title-search-form">Where?</h2>
-    <form className="search-form" style={{marginTop: "30px"}}>
+    <form className="searchForm" style={{marginTop: "30px"}}>
       <div className="row mb-3">
-        <label htmlFor="From:" className="col-sm-2 col-form-label">From:</label>
+        <label htmlFor="from" className="col-sm-2 col-form-label">From:</label>
         <div className="col-sm-10">
           <Address/>
         </div>
       </div>
       <div className="row mb-3">
-        <label htmlFor="To:" className="col-sm-2 col-form-label">To:</label>
+        <label htmlFor="to" className="col-sm-2 col-form-label">To:</label>
         <div className="col-sm-10">
           <Address/>
         </div>
