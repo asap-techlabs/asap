@@ -14,7 +14,7 @@ const Address = () => {
     console.log(value);
   }
 
-    function preprocessHook(value) {
+  function preprocessHook(value) {
     return `${value}, Hamburg, Germany`
   }
 
