@@ -1,5 +1,7 @@
 import Address from './Address'
 
+// this components incorporates the search of addresses on the form.
+
 const SearchAddress = () => {
   return (
   <div className="container-md" style={{marginTop: "30px"}}>
