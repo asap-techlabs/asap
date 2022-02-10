@@ -1,7 +1,6 @@
-import { useState } from 'react'
 import Address from './Address'
 
-// this component incorporates the search of addresses on the form calling the API.
+// this components incorporates the search of addresses on the form.
 
 export default function SearchAddress() {
 
@@ -43,8 +42,8 @@ export default function SearchAddress() {
 }
   return (
   <div className="container-md" style={{marginTop: "30px"}}>
-    <h2 className="title-search-form">Where? </h2>
-    <form onSubmit={onSubmit} className="searchForm" style={{marginTop: "30px"}}>
+    <h2 className="title-search-form">Where?</h2>
+    <form className="searchForm" style={{marginTop: "30px"}}>
       <div className="row mb-3">
         <label htmlFor="from" className="col-sm-2 col-form-label">From:</label>
         <div className="col-sm-10">

@@ -4,7 +4,8 @@ import { GeoapifyGeocoderAutocomplete, GeoapifyContext } from '@geoapify/react-g
 import '@geoapify/geocoder-autocomplete/styles/round-borders.css'
 import SearchAddress from './SearchAddress'
 // This component connects with the API Geoapify in order to get
-// real addresses from Hamburg in our form so we can use them when the user types an Address
+// real addresses from Hamburg in our form so we can use the in our form
+// with autocompletion.
 
 export default function Address (props) {
   // this initializes the component with a state and the empty data object to be filled.
@@ -32,18 +33,19 @@ export default function Address (props) {
   //     // });
   // };
 
-  //  function onPlaceSelect(value) {
+  function onPlaceSelect(value) {
+    console.log(value);
+  }
 
-  //       props.handleAddressChange(value)
-  //     }
+  function onSuggectionChange(value) {
+    console.log(value);
+    // maybe event.preventDefault()
+  }
 
-  // this function shows the suggestions on the dropdown
+  function preprocessHook(value) {
+    return `${value}, Hamburg, Germany`
+  }
 
-  // this function restricts the suggestions on the dropdown to Hamburg
-    function preprocessHook(value) {
-      return `${value}, Hamburg, Germany`
-    }
-    //API return to show the addresses.
   return <GeoapifyContext apiKey={geoapifyKey}>
           <GeoapifyGeocoderAutocomplete placeholder="Enter address here"
           preprocessHook={preprocessHook}
