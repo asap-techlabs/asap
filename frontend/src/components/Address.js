@@ -1,5 +1,3 @@
-import React, { useState } from 'react'
-import { Component } from 'react'
 import { GeoapifyGeocoderAutocomplete, GeoapifyContext } from '@geoapify/react-geocoder-autocomplete'
 import '@geoapify/geocoder-autocomplete/styles/round-borders.css'
 import SearchAddress from './SearchAddress'
@@ -11,7 +9,7 @@ export default function Address (props) {
   // this initializes the component with a state and the empty data object to be filled.
 
   // console.log(props, 'originAddress: ', props.searchAddress.originAddress)
-  // console.log(props)
+  //  console.log("props",props)
   //   const [state, setState] = useState({
   //         data: ''
   //     });
@@ -33,26 +31,15 @@ export default function Address (props) {
   //     // });
   // };
 
-  // const onPlaceSelect = function (value){
-  //   console.log('original state: ', props.searchAdress)
-  //   const tmpState = props.searchAdress
-  //   console.log('copied state: ', tmpState)
-  //   tmpState.data = value.properties.formatted
-  //   console.log('modified state: ', tmpState)
-  //   // props.setOriginState({value.properties.formatted})
-  //     // setState({
-  //     //   data: value.properties.formatted
-  //     // });
-  // };
 
-  function onPlaceSelect(value) {
-    console.log(value);
-  }
+  // function onPlaceSelect(value) {
+  //   console.log(value);
+  // }
 
-  function onSuggestionChange(value) {
-    console.log(value);
-    // maybe event.preventDefault()
-  }
+  // function onSuggestionChange(value) {
+  //   console.log(value);
+  //   // maybe event.preventDefault()
+  // }
 
   function preprocessHook(value) {
     return `${value}, Hamburg, Germany`
@@ -62,8 +49,7 @@ export default function Address (props) {
           <GeoapifyGeocoderAutocomplete placeholder="Enter address here"
           preprocessHook={preprocessHook}
           placeSelect={props.onPlaceSelect}
-          data={ props.isOrigin  ? props.searchAddress.originAddress : props.searchAddress.destinationAddress }
-          // data={ props.isOrigin  ? props.searchAddress.originAddress : props.searchAddress.destinationAddress}
+          data={ props.isOrigin? props.searchAddress.originAddress : props.searchAddress.destinationAddress }
           />
       </GeoapifyContext>
 

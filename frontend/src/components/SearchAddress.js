@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import Address from './Address'
 
 // this components incorporates the search of addresses on the form.
@@ -5,14 +6,11 @@ import Address from './Address'
 export default function SearchAddress() {
 
   const [state, setState] = useState({
-
       originAddress: '',
-      destinationAddress: '',
-      distance: 0,
-      date: new Date(),
-      price: 0
-
-      });
+  });
+  const [value, setValue] = useState({
+      destinationAddress: ''
+    });
 
     function onChangeOriginAddress(address) {
       // console.log('origin address changed to: ', address.properties.formatted )
@@ -23,27 +21,28 @@ export default function SearchAddress() {
 
     function onChangeDestinationAddress(address) {
       // console.log('destination address changed', address.properties.formatted )
-    setState({
-      destinationAddress: address.properties.formatted
-    });
+      setValue({
+        destinationAddress: address.properties.formatted
+      });
+
     }
 
     function onSubmit(event) {
       event.preventDefault();
-      console.log(state);
+      // console.log(state);
       const order = {
         originAddress: state.originAddress,
-        destinationAddress: state.destinationAddress,
+        destinationAddress: value.destinationAddress,
         distance: 0,
         date: new Date(),
         price: 0
       }
-      console.log(order);
+      // console.log(order);
 }
   return (
   <div className="container-md" style={{marginTop: "30px"}}>
     <h2 className="title-search-form">Where?</h2>
-    <form className="searchForm" style={{marginTop: "30px"}}>
+    <form onSubmit={onSubmit} className="searchForm" style={{marginTop: "30px"}}>
       <div className="row mb-3">
         <label htmlFor="from" className="col-sm-2 col-form-label">From:</label>
         <div className="col-sm-10">
@@ -53,7 +52,7 @@ export default function SearchAddress() {
       <div className="row mb-3">
         <label htmlFor="to" className="col-sm-2 col-form-label">To:</label>
         <div className="col-sm-10">
-          <Address type='text' isOrigin={false} onPlaceSelect={onChangeDestinationAddress} searchAddress={state} setDestinationAdress={setState}
+          <Address type='text' isOrigin={false} onPlaceSelect={onChangeDestinationAddress} searchAddress={value} setDestinationAdress={setValue}
           />
         </div>
       </div>
