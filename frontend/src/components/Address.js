@@ -33,11 +33,23 @@ export default function Address (props) {
   //     // });
   // };
 
+  // const onPlaceSelect = function (value){
+  //   console.log('original state: ', props.searchAdress)
+  //   const tmpState = props.searchAdress
+  //   console.log('copied state: ', tmpState)
+  //   tmpState.data = value.properties.formatted
+  //   console.log('modified state: ', tmpState)
+  //   // props.setOriginState({value.properties.formatted})
+  //     // setState({
+  //     //   data: value.properties.formatted
+  //     // });
+  // };
+
   function onPlaceSelect(value) {
     console.log(value);
   }
 
-  function onSuggectionChange(value) {
+  function onSuggestionChange(value) {
     console.log(value);
     // maybe event.preventDefault()
   }
