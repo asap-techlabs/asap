@@ -4,7 +4,7 @@ import Address from './Address'
 // this components incorporates the search of addresses on the form.
 
 export default function SearchAddress() {
-
+//  we initialize the state and the value for the From & To addresses
   const [state, setState] = useState({
       originAddress: '',
   });
@@ -13,14 +13,14 @@ export default function SearchAddress() {
     });
 
     function onChangeOriginAddress(address) {
-      // console.log('origin address changed to: ', address.properties.formatted )
+      // this changes the value of origin address
       setState({
         originAddress: address.properties.formatted
       });
     };
 
     function onChangeDestinationAddress(address) {
-      // console.log('destination address changed', address.properties.formatted )
+      // this changes the value of destination address
       setValue({
         destinationAddress: address.properties.formatted
       });
@@ -29,7 +29,7 @@ export default function SearchAddress() {
 
     function onSubmit(event) {
       event.preventDefault();
-      // console.log(state);
+      // to submit the values and send them to the databas
       const order = {
         originAddress: state.originAddress,
         destinationAddress: value.destinationAddress,
@@ -37,8 +37,9 @@ export default function SearchAddress() {
         date: new Date(),
         price: 0
       }
-      // console.log(order);
 }
+
+// this returns the form visible to the user and call the functions to get the values
   return (
   <div className="container-md" style={{marginTop: "30px"}}>
     <h2 className="title-search-form">Where?</h2>

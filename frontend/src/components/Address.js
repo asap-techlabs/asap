@@ -6,45 +6,15 @@ import SearchAddress from './SearchAddress'
 // with autocompletion.
 
 export default function Address (props) {
-  // this initializes the component with a state and the empty data object to be filled.
 
-  // console.log(props, 'originAddress: ', props.searchAddress.originAddress)
-  //  console.log("props",props)
-  //   const [state, setState] = useState({
-  //         data: ''
-  //     });
-
-
-  // Key to use with the API
+  // Key to use the API
   const geoapifyKey = process.env.REACT_APP_GEOAPIFY_KEY
-  // After the selection of an address from the dropdown we get the address in the state data object.
 
-  // const onPlaceSelect = function (value){
-  //   console.log('original state: ', props.searchAdress)
-  //   const tmpState = props.searchAdress
-  //   console.log('copied state: ', tmpState)
-  //   tmpState.data = value.properties.formatted
-  //   console.log('modified state: ', tmpState)
-  //   // props.setOriginState({value.properties.formatted})
-  //     // setState({
-  //     //   data: value.properties.formatted
-  //     // });
-  // };
-
-
-  // function onPlaceSelect(value) {
-  //   console.log(value);
-  // }
-
-  // function onSuggestionChange(value) {
-  //   console.log(value);
-  //   // maybe event.preventDefault()
-  // }
-
+  // this function filters the results to be just inside of Hamburg
   function preprocessHook(value) {
     return `${value}, Hamburg, Germany`
   }
-
+  // this returns the results of the API call and pass them to the data
   return <GeoapifyContext apiKey={geoapifyKey}>
           <GeoapifyGeocoderAutocomplete placeholder="Enter address here"
           preprocessHook={preprocessHook}
