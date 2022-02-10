@@ -33,7 +33,7 @@ function Card (props) {
 	return (
 		<div className='card'>
 			<div className='card_body'>
-				<img src={props.img} alt='decoration' class='card_image'/>
+				<img src={props.img} alt='decoration' className='card_image'/>
 				<h2 className='card_title'>{props.title}</h2>
 				<p className='card_description'>{props.description}</p>
 			</div>
