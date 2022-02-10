@@ -4,40 +4,53 @@ import Address from './Address'
 // this components incorporates the search of addresses on the form.
 
 export default function SearchAddress() {
-//  we initialize the state and the value for the From & To addresses
+//  we initialize the state and the value for the From(origin) & To(destination) addresses
   const [state, setState] = useState({
       originAddress: '',
+      latOrigin: 0.0,
+      lonOrigin: 0.0
   });
   const [value, setValue] = useState({
-      destinationAddress: ''
+      destinationAddress: '',
+      latDestination: 0.0,
+      lonDestination: 0.0
     });
 
     function onChangeOriginAddress(address) {
-      // this changes the value of origin address
+      // this changes the value of the origin address
       setState({
-        originAddress: address.properties.formatted
+        originAddress: address.properties.formatted,
+        latOrigin: address.properties.lat,
+        lonOrigin: address.properties.lon
       });
     };
 
     function onChangeDestinationAddress(address) {
-      // this changes the value of destination address
+      // this changes the value of the destination address
       setValue({
-        destinationAddress: address.properties.formatted
+        destinationAddress: address.properties.formatted,
+        latDestination: address.properties.lat,
+        lonDestination: address.properties.lon
       });
 
     }
 
     function onSubmit(event) {
       event.preventDefault();
-      // to submit the values and send them to the databas
+      // to submit the values and send them to the database
       const order = {
         originAddress: state.originAddress,
+        latOrigin: state.latOrigin,
+        lonOrigin: state.lonOrigin,
         destinationAddress: value.destinationAddress,
+        latDestination: value.latDestination,
+        lonDestination: value.lonDestination,
         distance: 0,
         date: new Date(),
         price: 0
       }
-}
+      console.log(order);
+    }
 
 // this returns the form visible to the user and call the functions to get the values
   return (

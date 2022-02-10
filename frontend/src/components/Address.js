@@ -19,7 +19,7 @@ export default function Address (props) {
           <GeoapifyGeocoderAutocomplete placeholder="Enter address here"
           preprocessHook={preprocessHook}
           placeSelect={props.onPlaceSelect}
-          data={ props.isOrigin? props.searchAddress.originAddress : props.searchAddress.destinationAddress }
+          data={ props.isOrigin? [props.searchAddress.originAddress, props.searchAddress.lat, props.searchAddress.lon] : [props.searchAddress.destinationAddress, props.searchAddress.lat, props.searchAddress.lon] }
           />
       </GeoapifyContext>
 
