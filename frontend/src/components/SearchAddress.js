@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
 import axios from 'axios';
+import {getDistance} from 'geolib';
 import Address from './Address'
-
-// this components incorporates the search of addresses on the form.
+// this function incorporates the search of addresses on the form.
 
 export default function SearchAddress() {
-//  we initialize the state and the value for the From(origin) & To(destination) addresses
+//  we initialize the state, value, distance and price for the From(origin) & To(destination) addresses,
+// distance in between both and price
   const [state, setState] = useState({
     originAddress: '',
     latOrigin: 0.0,
     lonOrigin: 0.0
   });
+
   const [value, setValue] = useState({
     destinationAddress: '',
     latDestination: 0.0,
@@ -26,61 +28,52 @@ export default function SearchAddress() {
   });
 
   function onChangeOriginAddress(address) {
-        // this changes the value of the origin address
+        // this changes the value of the origin address once selected on the form
       setState({
         originAddress: address.properties.formatted,
-        latOrigin: address.properties.lat,
-        lonOrigin: address.properties.lon
+        latOrigin: parseFloat(address.properties.lat.toFixed(4)),
+        lonOrigin: parseFloat(address.properties.lon.toFixed(4))
       });
     };
 
   function onChangeDestinationAddress(address) {
-      // this changes the value of the destination address
+      // this changes the value of the destination address once selected on the form
     setValue({
       destinationAddress: address.properties.formatted,
-      latDestination: address.properties.lat,
-      lonDestination: address.properties.lon
+      latDestination: parseFloat(address.properties.lat.toFixed(4)),
+      lonDestination: parseFloat(address.properties.lon.toFixed(4))
     });
-  getDistance(state.latOrigin, state.lonOrigin, value.latDestination, value.lonDestination);
+    //and with both addresses call the function to calculate the distance
+    calculateDistance();
+
   }
 
-  function getDistance(latO, lonO, latD, lonD){
-
-    var R = 6371; // Radius of the earth in km
-    var dLat = deg2rad(latD-latO);  // deg2rad below
-    var dLon = deg2rad(lonD-lonO);
-    var a =
-      Math.sin(dLat/2) * Math.sin(dLat/2) +
-      Math.cos(deg2rad(latO)) * Math.cos(deg2rad(latD)) *
-      Math.sin(dLon/2) * Math.sin(dLon/2)
-      ;
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-    var d = R * c; // Distance in km
-    setDistance({
-        distance: d
+  function calculateDistance() {
+    // this function call the package geolib https://github.com/manuelbieh/geolib to calculate
+    // the distance using the coordinates
+    const distance = getDistance(
+      { latitude: state.latOrigin, longitude: state.lonOrigin },
+      { latitude: value.latDestination, longitude: value.lonDestination}
+      );
+      setDistance({
+        distance: distance / 1000,
       })
-    if(d>100) {
-      calculatePrice(100);
-      } else {
-      calculatePrice(d);
-    };
-}
+      // once the distance is calculated, it calls the function to calculate the price.
+      calculatePrice((distance / 1000));
+    }
 
-function deg2rad(deg) {
-  return deg * (Math.PI/180)
-}
-
-function calculatePrice(distance) {
-  let price = 3 + distance*0.5
+  function calculatePrice(distance) {
+    // it calculates the price with a minimum fixed rate plus a value by kilometer
+  let price = 10 + distance*0.5
   setPrice({
     price: price
   })
-    // console.log(price);
+
 }
 
   function onSubmit(event) {
-    event.preventDefault();
-      // to submit the values and send them to the database
+
+      // this funcion creates the order to submit all the values and send them to the database
     const order = {
       originAddress: state.originAddress,
       latOrigin: state.latOrigin,
@@ -92,14 +85,12 @@ function calculatePrice(distance) {
       date: new Date(),
       price: price.price
     }
-    console.log(order);
+    // POST request to add an order
     axios.post('http://localhost:8000/orders/add', order)
           .then(res => console.log(res.data));
-
-
   }
 
-// this returns the form visible to the user and call the functions to get the values
+// this returns the form visible to the user and call all the functions on this file
   return (
   <div className="container-md" style={{marginTop: "30px"}}>
     <h2 className="title-search-form">Where?</h2>
@@ -113,7 +104,7 @@ function calculatePrice(distance) {
       <div className="row mb-3">
         <label htmlFor="to" className="col-sm-2 col-form-label">To:</label>
         <div className="col-sm-10">
-          <Address type='text' isOrigin={false} onPlaceSelect={onChangeDestinationAddress} searchAddress={value} setDestinationAdress={setValue} setDistance={setDistance} calculateDistance={getDistance} setPrice={setPrice} calculatePrice={calculatePrice}
+          <Address type='text' isOrigin={false} onPlaceSelect={onChangeDestinationAddress} searchAddress={value} setDestinationAdress={setValue} setDistance={setDistance} calculateDistance={calculateDistance} setPrice={setPrice} calculatePrice={calculatePrice}
           />
         </div>
       </div>
