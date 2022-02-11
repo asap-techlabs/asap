@@ -28,16 +28,16 @@ export default function SearchAddress() {
   });
 
   function onChangeOriginAddress(address) {
-        // this changes the value of the origin address once selected on the form
-      setState({
-        originAddress: address.properties.formatted,
-        latOrigin: parseFloat(address.properties.lat.toFixed(4)),
-        lonOrigin: parseFloat(address.properties.lon.toFixed(4))
-      });
-    };
+    // this changes the value of the origin address once selected on the form
+    setState({
+      originAddress: address.properties.formatted,
+      latOrigin: parseFloat(address.properties.lat.toFixed(4)),
+      lonOrigin: parseFloat(address.properties.lon.toFixed(4))
+    });
+  };
 
   function onChangeDestinationAddress(address) {
-      // this changes the value of the destination address once selected on the form
+    // this changes the value of the destination address once selected on the form
     setValue({
       destinationAddress: address.properties.formatted,
       latDestination: parseFloat(address.properties.lat.toFixed(4)),
@@ -45,7 +45,6 @@ export default function SearchAddress() {
     });
     //and with both addresses call the function to calculate the distance
     calculateDistance();
-
   }
 
   function calculateDistance() {
@@ -54,22 +53,21 @@ export default function SearchAddress() {
     const distance = getDistance(
       { latitude: state.latOrigin, longitude: state.lonOrigin },
       { latitude: value.latDestination, longitude: value.lonDestination}
-      );
-      setDistance({
-        distance: distance / 1000,
-      })
-      // once the distance is calculated, it calls the function to calculate the price.
+    );
+    setDistance({
+      distance: distance / 1000,
+    })
+    // once the distance is calculated, it calls the function to calculate the price.
       calculatePrice((distance / 1000));
     }
 
   function calculatePrice(distance) {
     // it calculates the price with a minimum fixed rate plus a value by kilometer
-  let price = 10 + distance*0.5
-  setPrice({
-    price: price
-  })
-
-}
+    let price = 10 + distance*0.5
+    setPrice({
+      price: price
+    })
+  }
 
   function onSubmit(event) {
 
@@ -87,7 +85,7 @@ export default function SearchAddress() {
     }
     // POST request to add an order
     axios.post('http://localhost:8000/orders/add', order)
-          .then(res => console.log(res.data));
+      .then(res => console.log(res.data));
   }
 
 // this returns the form visible to the user and call all the functions on this file
