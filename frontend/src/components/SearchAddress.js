@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios';
 import Address from './Address'
 
 // this components incorporates the search of addresses on the form.
@@ -50,6 +51,10 @@ export default function SearchAddress() {
         price: 0
       }
       console.log(order);
+      axios.post('http://localhost:8000/orders/add', order)
+        .then(res => console.log(res.data));
+
+
     }
 
 // this returns the form visible to the user and call the functions to get the values

@@ -1,9 +1,10 @@
 import './App.css'
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import SearchAddress from './components/SearchAddress';
-import Cards from './components/Cards';
 import 'bootstrap/dist/css/bootstrap.css';
+import Cards from './components/Cards';
+import SearchAddress from './components/SearchAddress';
+import CreateOrder from './components/CreateOrder';
 
 // this file keeps the routes to the different sections of the app.
 
@@ -13,8 +14,9 @@ function App() {
       <Router>
         <Routes>
       {/*TODO other routes to add  */}
-          <Route path ="/" element={<Cards/>} />
+          <Route path ="/" exact element={<Cards/>} />
           <Route path ="/search" element={<SearchAddress/>} />
+          <Route path ="/create" element={<CreateOrder/>} />
         </Routes>
       </Router>
     </div>
