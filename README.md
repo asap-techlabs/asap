@@ -24,7 +24,11 @@ Dependencies:
 - express
 - nodemon
 - geoapify
-- react-dom
+- axios
+- dotenv
+- mongoose
 - react
+- react-dom
 - react-router-dom
 - bootstrap
+
