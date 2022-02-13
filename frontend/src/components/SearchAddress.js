@@ -86,6 +86,7 @@ export default function SearchAddress() {
     // POST request to add an order
     axios.post('http://localhost:8000/orders/add', order)
       .then(res => console.log(res.data));
+
   }
 
 // this returns the form visible to the user and call all the functions on this file

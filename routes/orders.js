@@ -14,8 +14,6 @@ router.route('/add').post((req, res) => {
   const distance = Number(req.body.distance);
   const price = Number(req.body.price);
 
-
-
   const newOrder = new Order({
   originAddress,
   latOrigin,
@@ -34,6 +32,17 @@ router.route('/add').post((req, res) => {
   .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/:id').get((req, res) => {
+  Order.findById(req.params.id)
+    .then(order => res.json(order))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
+router.route('/:id').delete((req, res) => {
+  Order.findByIdAndDelete(req.params.id)
+    .then(() => res.json('Order deleted.'))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
 
 router.route('/update/:id').post((req, res) => {
   Order.findById(req.params.id)
@@ -45,7 +54,6 @@ router.route('/update/:id').post((req, res) => {
       order.destinationAddress = req.body.destinationAddress;
       order.latDestination = Number(req.body.latDestination);
       order.lonDestination = Number(req.body.lonDestination);
-      order.description = req.body.description;
       order.date = Date.parse(req.body.date);
       order.distance = Number(req.body.distance);
       order.price = Number(req.body.price);
