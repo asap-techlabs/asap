@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 // This function returns the login form (Username, Password) visible to the user
 function Login() {
