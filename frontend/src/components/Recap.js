@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const Order = props => (
+const order = props => (
   <tr>
     <td>From: {props.order.originAddress}</td>
     <td>To: {props.order.destinationAddress}</td>
-    <td>{props.order.distance}</td>
-    <td>{props.order.price}</td>
+    <td>Distance:{props.order.distance}</td>
+    <td>Price: {props.order.price}</td>
     <td>
       <Link to={"/update/"+props.order._id}>Confirm</Link> | <a href="#" onClick={() => { props.deleteOrder(props.order._id) }}>cancel order</a>
     </td>
@@ -21,13 +21,14 @@ export default class Recap extends Component {
 
     this.deleteOrder = this.deleteOrder.bind(this)
 
-    this.state = {orders: []};
+    this.state = {order: {}};
   }
 
-  componentDidMount() {
-    axios.get('http://localhost:3000/orders/'+'6206f77c999b020d967449a0')
+  componentDidMount(props) {
+    console.log(props);
+    axios.get(`http://localhost:3000/orders/${this.props.match.params.id}`)
       .then(response => {
-        this.setState({ orders: response.data })
+        this.setState({ order: response.data })
       })
       .catch((error) => {
         console.log(error);
@@ -35,21 +36,22 @@ export default class Recap extends Component {
   }
 
   deleteOrder(id) {
-    axios.delete('http://localhost:3000/orders/'+id)
+    axios.delete(`http://localhost:3000/orders//${id}`)
       .then(response => { console.log(response.data)});
-
+//         this.props.history.push("/");
     this.setState({
       orders: this.state.orders.filter(el => el._id !== id)
     })
   }
 
-  OrderList() {
-    return this.state.orders.map(currentorder => {
-      return <Order order={currentorder} deleteorder={this.deleteorder} key={currentorder._id}/>;
-    })
-  }
+  // OrderList() {
+  //   return this.state.orders.map(currentorder => {
+  //     return <Order order={currentorder} deleteorder={this.deleteorder} key={currentorder._id}/>;
+  //   })
+  // }
 
   render() {
+    // const order = this.state.order;
     return (
       <div>
         <h3>Recap</h3>
