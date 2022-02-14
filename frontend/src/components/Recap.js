@@ -1,72 +1,67 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { axios } from 'axios';
 
-const order = props => (
-  <tr>
-    <td>From: {props.order.originAddress}</td>
-    <td>To: {props.order.destinationAddress}</td>
-    <td>Distance:{props.order.distance}</td>
-    <td>Price: {props.order.price}</td>
-    <td>
-      <Link to={"/update/"+props.order._id}>Confirm</Link> | <a href="#" onClick={() => { props.deleteOrder(props.order._id) }}>cancel order</a>
-    </td>
-  </tr>
+const Order = props => (
+<div>
+    <p>{props.order.originAddress}</p>
+    <p>{props.order.destinationAddress}</p>
+    <p>{props.order.distance} km</p>
+    <p>{parseFloat(props.order.price.toFixed(2))}€</p>
+<Link to={"/edit/"+props.order._id}>edit</Link> | <Link to={"/delete/"+props.order._id}>delete</Link>
+
+</div>
 )
 
+  export default class Recap extends Component {
+    constructor(props) {
+      super(props);
 
-export default class Recap extends Component {
-  constructor(props) {
-    super(props);
 
-    this.deleteOrder = this.deleteOrder.bind(this)
+    // this.deleteOrder = this.deleteOrder.bind(this)
 
-    this.state = {order: {}};
+    this.state = {orders: []};
   }
 
-  componentDidMount(props) {
-    console.log(props);
-    axios.get(`http://localhost:3000/orders/${this.props.match.params.id}`)
-      .then(response => {
-        this.setState({ order: response.data })
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+
+
+  componentDidMount() {
+    this.getData();
+  }
+
+  getData = () => {
+    fetch('http://localhost:8000/orders')
+      .then(data => data.json())
+      .then((data) => {
+        this.setState({
+          orders: data
+        })
+      });
   }
 
   deleteOrder(id) {
-    axios.delete(`http://localhost:3000/orders//${id}`)
+    axios.delete(`http://localhost:8000/orders//${id}`)
       .then(response => { console.log(response.data)});
-//         this.props.history.push("/");
+        this.props.history.push("/");
     this.setState({
       orders: this.state.orders.filter(el => el._id !== id)
     })
   }
 
-  // OrderList() {
-  //   return this.state.orders.map(currentorder => {
-  //     return <Order order={currentorder} deleteorder={this.deleteorder} key={currentorder._id}/>;
-  //   })
-  // }
+  orderList() {
+    return this.state.orders.map(currentorder => {
+      return <Order order={currentorder} deleteorder={this.deleteorder} key={currentorder._id}/>;
+    })
+  }
 
   render() {
-    // const order = this.state.order;
+
     return (
       <div>
         <h3>Recap</h3>
-        <table className="table">
-          <thead className="thead-light">
-            <tr>
-              <th>originAddress</th>
-              <th>destinationAddress</th>
-              <th>distance</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
+          <div>
+          { this.orderList() }
+          </div>
       </div>
     )
   }

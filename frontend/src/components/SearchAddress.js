@@ -63,7 +63,7 @@ export default function SearchAddress() {
 
   function calculatePrice(distance) {
     // it calculates the price with a minimum fixed rate plus a value by kilometer
-    let price = 10 + distance*0.5
+    let price = parseFloat((10 + distance*0.5).toFixed(2));
     setPrice({
       price: price
     })
@@ -86,7 +86,7 @@ export default function SearchAddress() {
     // POST request to add an order
     axios.post('http://localhost:8000/orders/add', order)
       .then(res => console.log(res.data));
-    this.props.history.push(`/orders/{order._id}`);
+    this.props.history.push('http://localhost:3000/orders/');
   }
 
 // this returns the form visible to the user and call all the functions on this file

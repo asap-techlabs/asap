@@ -28,9 +28,9 @@ mongoose.connection.once('open', function(){
 
 // TO DO check the routes we actually want to keep.
 
-app.get('/', (req, res) => {
-  res.send('Hello')
-})
+// app.get('/', (req, res) => {
+//   res.send('Hello')
+// })
 
 
 

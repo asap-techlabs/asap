@@ -15,7 +15,7 @@ function App() {
       {/*TODO other routes to add  */}
           <Route path ="/" exact element={<Cards/>} />
           <Route path ="/search" element={<SearchAddress/>} />
-          <Route path ="/orders/:id" element={<Recap/>} />
+          <Route path ="/orders" element={<Recap/>} />
         </Routes>
       </Router>
     </div>
