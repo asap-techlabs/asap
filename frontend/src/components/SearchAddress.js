@@ -7,6 +7,8 @@ import Address from './Address'
 export default function SearchAddress() {
 //  we initialize the state, value, distance and price for the From(origin) & To(destination) addresses,
 // distance in between both and price
+const order = {
+};
   const [state, setState] = useState({
     originAddress: '',
     latOrigin: 0.0,
@@ -70,7 +72,7 @@ export default function SearchAddress() {
   }
 
   function onSubmit(event) {
-
+    event.preventDefault();
       // this funcion creates the order to submit all the values and send them to the database
     const order = {
       originAddress: state.originAddress,
@@ -85,8 +87,7 @@ export default function SearchAddress() {
     }
     // POST request to add an order
     axios.post('http://localhost:8000/orders/add', order)
-      .then(res => console.log(res.data));
-    this.props.history.push('http://localhost:3000/orders/');
+      .then(res => window.location.href = `http://localhost:3000/orders/${res.data}`);
   }
 
 // this returns the form visible to the user and call all the functions on this file

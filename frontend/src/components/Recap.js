@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import { axios } from 'axios';
 
 const Order = props => (
+
 <div>
     <p>{props.order.originAddress}</p>
     <p>{props.order.destinationAddress}</p>
     <p>{props.order.distance} km</p>
-    <p>{parseFloat(props.order.price.toFixed(2))}€</p>
+    {/* <p>{parseFloat(props.order.price.toFixed(2))}€</p> */}
 <Link to={"/edit/"+props.order._id}>edit</Link> | <Link to={"/delete/"+props.order._id}>delete</Link>
 
 </div>
@@ -20,7 +21,9 @@ const Order = props => (
 
     // this.deleteOrder = this.deleteOrder.bind(this)
 
-    this.state = {orders: []};
+    this.state = {
+
+    };
   }
 
 
@@ -30,29 +33,40 @@ const Order = props => (
   }
 
   getData = () => {
-    fetch('http://localhost:8000/orders')
+    const id = window.location.pathname.split('/')[2];
+    fetch('http://localhost:8000/orders/'+id)
       .then(data => data.json())
       .then((data) => {
-        this.setState({
-          orders: data
-        })
+        this.setState([{
+          id : id,
+          originAddress: data.originAddress,
+          latOrigin: data.latOrigin,
+          lonOrigin: data.lonOrigin,
+          destinationAddress: data.destinationAddress,
+          latDestination: data.latDestination,
+          lonDestination: data.lonDestination,
+          distance: data.distance,
+          date: data.date,
+          price: data.price
+        }])
       });
   }
 
-  deleteOrder(id) {
-    axios.delete(`http://localhost:8000/orders//${id}`)
-      .then(response => { console.log(response.data)});
-        this.props.history.push("/");
-    this.setState({
-      orders: this.state.orders.filter(el => el._id !== id)
-    })
-  }
+  // deleteOrder(id) {
+  //   axios.delete(`http://localhost:8000/orders//${id}`)
+  //     .then(response => { console.log(response.data)});
+  //       this.props.history.push("/");
+  //   this.setState({
+  //     orders: this.state.orders.filter(el => el._id !== id)
+  //   })
+  // }
 
-  orderList() {
-    return this.state.orders.map(currentorder => {
-      return <Order order={currentorder} deleteorder={this.deleteorder} key={currentorder._id}/>;
-    })
-  }
+  orderShow() {
+    let order = {};
+    Object.entries(this.state).forEach(([key, value]) => order = value
+    );
+    return <Order order={order} key={order.id}/>;
+    }
 
   render() {
 
@@ -60,7 +74,7 @@ const Order = props => (
       <div>
         <h3>Recap</h3>
           <div>
-          { this.orderList() }
+          { this.orderShow() }
           </div>
       </div>
     )

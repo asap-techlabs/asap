@@ -1,6 +1,16 @@
 import express from 'express'
+import cors from 'cors';
 const router = express.Router();
 import Order  from '../models/order.model.js';
+
+
+const corsOptions ={
+    origin:'http://localhost:3000',
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:307
+}
+
+router.use(cors(corsOptions));
 
 router.route('/').get((req, res) => {
   Order.find()
@@ -34,7 +44,8 @@ router.route('/add').post((req, res) => {
 
 
   newOrder.save()
-  .then(() => res.json('Order added!'))
+  // .then(() => res.json(newOrder._id))
+  .then(() => res.json(newOrder._id))
   .catch(err => res.status(400).json('Error: ' + err));
 });
 
