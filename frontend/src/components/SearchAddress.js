@@ -60,7 +60,14 @@ const order = {
       distance: distance / 1000,
     })
     // once the distance is calculated, it calls the function to calculate the price.
+    // There is a 'bug' in the API or the package geolib that calculates distances too far (like 6000 km inside Hamburg!),
+    // when the address doesn't have a postal code, so to avoid weird prices and distances , I set a limit of 60 km,
+    // which is the longer distance inside Hamburg.
+      if( distance > 60) {
+        calculatePrice((60));
+      } else {
       calculatePrice((distance / 1000));
+      }
     }
 
   function calculatePrice(distance) {
@@ -85,7 +92,7 @@ const order = {
       date: new Date(),
       price: price.price
     }
-    // POST request to add an order
+    // POST request to add an order to the database and the redirects to the order in order to get the confirmation from the user.
     axios.post('http://localhost:8000/orders/add', order)
       .then(res => window.location.href = `http://localhost:3000/orders/${res.data}`);
   }
