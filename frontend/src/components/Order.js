@@ -21,7 +21,9 @@ export default function Order (props) {
             <Typography sx={{ mb: 1.5 }} color="text.secondary">
               Distance:{props.order.distance} km
               <br></br>
-              <strong>Price : {parseFloat(props.order.price)}€ </strong>
+              <strong>
+                Price : {parseFloat(props.order.price).toFixed(2)}€{" "}
+              </strong>
             </Typography>
           </CardContent>
         </Card>

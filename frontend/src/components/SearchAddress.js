@@ -45,12 +45,12 @@ const order = {
     // this changes the value of the destination address once selected on the form
     setValue({
       destinationAddress: address.properties.formatted,
-      latDestination: parseFloat(address.properties.lat.toFixed(4)),
-      lonDestination: parseFloat(address.properties.lon.toFixed(4))
+      latDestination: parseFloat(address.properties.lat),
+      lonDestination: parseFloat(address.properties.lon)
     });
     //and with both addresses call the function to calculate the distance
-    console.log(typeof value.latDestination);
-    console.log(value.latDestination);
+    // console.log(typeof value.latDestination);
+    // console.log(value.latDestination);
     calculateDistance();
   }
 
