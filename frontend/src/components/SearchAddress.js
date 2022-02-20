@@ -54,21 +54,25 @@ const order = {
     // the distance using the coordinates
     const distance = getDistance(
       { latitude: state.latOrigin, longitude: state.lonOrigin },
-      { latitude: value.latDestination, longitude: value.lonDestination}
+      { latitude: value.latDestination, longitude: value.lonDestination }
     );
-    setDistance({
-      distance: distance / 1000,
-    })
-    // once the distance is calculated, it calls the function to calculate the price.
-    // There is a 'bug' in the API or the package geolib that calculates distances too far (like 6000 km inside Hamburg!),
-    // when the address doesn't have a postal code, so to avoid weird prices and distances , I set a limit of 60 km,
+     // There is a 'bug' in the API or the package geolib that calculates distances too far (like 6000 km inside Hamburg!),
+    // when the address doesn't have a a postal code or a house number, so to avoid weird prices and distances , I set a limit of 60 km,
     // which is the longer distance inside Hamburg.
-      if( distance > 60) {
-        calculatePrice((60));
-      } else {
-      calculatePrice((distance / 1000));
-      }
+    if (distance > 60) {
+      setDistance({
+        distance: 60,
+      });
+      calculatePrice(60);
+    } else {
+      setDistance({
+        distance: distance,
+      });
+      calculatePrice( distance / 1000);
     }
+    // once the distance is calculated, it calls the function to calculate the price.
+  }
+  // filterbcountrycode boas by location
 
   function calculatePrice(distance) {
     // it calculates the price with a minimum fixed rate plus a value by kilometer

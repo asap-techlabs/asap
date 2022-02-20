@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Order from "./Order.js"
 
 
-  export default class Recap extends Component {
+  export default class CalcOrder extends Component {
     constructor(props) {
       super(props);
     this.state = {
@@ -47,9 +47,8 @@ import Order from "./Order.js"
   render() {
     // renders the information
     return (
-      <div className="card border-light mb-3" style={{marginTop: "30px"}}>
-        <h3 className="card-title">Your ride is almost ready !</h3>
-          { this.orderShow() }
+      <div>
+        { this.orderShow() }
       </div>
     )
   }
