@@ -21,7 +21,7 @@ function Login() {
           <button type="submit" className="btn btn-success">Login</button>
         </form>
         <div className="container-signup">
-        <p className="title-no-account" style={{marginTop: "30px"}}>No account yet? <a href="#">Sign up</a>.</p>
+        <p className="title-no-account" style={{marginTop: "30px"}}>No account yet? <a href="/">Sign up</a>.</p>
         </div>
       </div>
     )

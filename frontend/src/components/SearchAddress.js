@@ -5,28 +5,28 @@ import Address from './Address'
 // this function incorporates the search of addresses on the form.
 
 export default function SearchAddress() {
-//  we initialize the state, value, distance and price for the From(origin) & To(destination) addresses,
-// distance in between both and price
-const order = {
-};
+  //  we initialize the state, value, distance and price for the From(origin) & To(destination) addresses,
+  // distance in between both and price
+  // eslint-disable-next-line
+  const order = {};
   const [state, setState] = useState({
-    originAddress: '',
+    originAddress: "",
     latOrigin: 0.0,
-    lonOrigin: 0.0
+    lonOrigin: 0.0,
   });
 
   const [value, setValue] = useState({
-    destinationAddress: '',
+    destinationAddress: "",
     latDestination: 0.0,
-    lonDestination: 0.0
+    lonDestination: 0.0,
   });
 
   const [distance, setDistance] = useState({
-    distance: 0.0
+    distance: 0.0,
   });
 
   const [price, setPrice] = useState({
-    price: 0.0
+    price: 0.0,
   });
 
   function onChangeOriginAddress(address) {
@@ -34,19 +34,18 @@ const order = {
     setState({
       originAddress: address.properties.formatted,
       latOrigin: parseFloat(address.properties.lat.toFixed(4)),
-      lonOrigin: parseFloat(address.properties.lon.toFixed(4))
+      lonOrigin: parseFloat(address.properties.lon.toFixed(4)),
     });
-        console.log(typeof state.latOrigin);
-        console.log(state.latOrigin);
-  };
-
+    console.log(typeof state.latOrigin);
+    console.log(state.latOrigin);
+  }
 
   function onChangeDestinationAddress(address) {
     // this changes the value of the destination address once selected on the form
     setValue({
       destinationAddress: address.properties.formatted,
       latDestination: parseFloat(address.properties.lat),
-      lonDestination: parseFloat(address.properties.lon)
+      lonDestination: parseFloat(address.properties.lon),
     });
     //and with both addresses call the function to calculate the distance
     // console.log(typeof value.latDestination);
@@ -66,7 +65,7 @@ const order = {
     //   [state.latOrigin, state.lonOrigin],
     //   [value.latDestination, value.latDestination]
     // ));
-     // There is a 'bug' in the API or the package geolib that calculates distances too far (like 6000 km inside Hamburg!),
+    // There is a 'bug' in the API or the package geolib that calculates distances too far (like 6000 km inside Hamburg!),
     // when the address doesn't have a a postal code or a house number, so to avoid weird prices and distances , I set a limit of 60 km,
     // which is the longer distance inside Hamburg.
     if (distance > 60) {
@@ -78,7 +77,7 @@ const order = {
       setDistance({
         distance: distance,
       });
-      calculatePrice( distance / 1000);
+      calculatePrice(distance / 1000);
     }
     // once the distance is calculated, it calls the function to calculate the price.
   }
@@ -107,15 +106,15 @@ const order = {
 
   function calculatePrice(distance) {
     // it calculates the price with a minimum fixed rate plus a value by kilometer
-    let price = parseFloat((10 + distance*0.5).toFixed(2));
+    let price = parseFloat((10 + distance * 0.5).toFixed(2));
     setPrice({
-      price: price
-    })
+      price: price,
+    });
   }
 
   function onSubmit(event) {
     event.preventDefault();
-      // this funcion creates the order to submit all the values and send them to the database
+    // this funcion creates the order to submit all the values and send them to the database
     const order = {
       originAddress: state.originAddress,
       latOrigin: state.latOrigin,
@@ -125,33 +124,62 @@ const order = {
       lonDestination: value.lonDestination,
       distance: distance.distance,
       date: new Date(),
-      price: price.price
-    }
+      price: price.price,
+    };
     // POST request to add an order to the database and the redirects to the order in order to get the confirmation from the user.
-    axios.post('http://localhost:8000/orders/add', order)
-      .then(res => window.location.href = `http://localhost:3000/orders/${res.data}`);
+    axios
+      .post("http://localhost:8000/orders/add", order)
+      .then(
+        (res) =>
+          (window.location.href = `http://localhost:3000/orders/${res.data}`)
+      );
   }
 
-// this returns the form visible to the user and call all the functions on this file
+  // this returns the form visible to the user and call all the functions on this file
   return (
-  <div className="container-md" style={{marginTop: "30px"}}>
-    <h2 className="title-search-form">Where?</h2>
-    <form onSubmit={onSubmit} className="searchForm" style={{marginTop: "30px"}}>
-      <div className="row mb-3">
-        <label htmlFor="from" className="col-sm-2 col-form-label">From:</label>
-        <div className="col-sm-10">
-          <Address type='text' isOrigin={true} onPlaceSelect={onChangeOriginAddress} searchAddress={state} setOriginAdress={setState}/>
+    <div className="container-md" style={{ marginTop: "30px" }}>
+      <h2 className="title-search-form">Where?</h2>
+      <form
+        onSubmit={onSubmit}
+        className="searchForm"
+        style={{ marginTop: "30px" }}
+      >
+        <div className="row mb-3">
+          <label htmlFor="from" className="col-sm-2 col-form-label">
+            From:
+          </label>
+          <div className="col-sm-10">
+            <Address
+              type="text"
+              isOrigin={true}
+              onPlaceSelect={onChangeOriginAddress}
+              searchAddress={state}
+              setOriginAdress={setState}
+            />
+          </div>
         </div>
-      </div>
-      <div className="row mb-3">
-        <label htmlFor="to" className="col-sm-2 col-form-label">To:</label>
-        <div className="col-sm-10">
-          <Address type='text' isOrigin={false} onPlaceSelect={onChangeDestinationAddress} searchAddress={value} setDestinationAdress={setValue} setDistance={setDistance} calculateDistance={calculateDistance} setPrice={setPrice} calculatePrice={calculatePrice}
-          />
+        <div className="row mb-3">
+          <label htmlFor="to" className="col-sm-2 col-form-label">
+            To:
+          </label>
+          <div className="col-sm-10">
+            <Address
+              type="text"
+              isOrigin={false}
+              onPlaceSelect={onChangeDestinationAddress}
+              searchAddress={value}
+              setDestinationAdress={setValue}
+              setDistance={setDistance}
+              calculateDistance={calculateDistance}
+              setPrice={setPrice}
+              calculatePrice={calculatePrice}
+            />
+          </div>
         </div>
-      </div>
-      <button type="submit" className="btn btn-success">Next</button>
-    </form>
-  </div>
-  )
+        <button type="submit" className="btn btn-success">
+          Next
+        </button>
+      </form>
+    </div>
+  );
 }
