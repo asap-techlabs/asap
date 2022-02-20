@@ -30,4 +30,5 @@ export default function NewOrderShow() {
         </CardActions>
       </div>
     );
+    // should be redirecting to /login/ but the logic behind is not ready yet.
 }

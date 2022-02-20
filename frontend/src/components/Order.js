@@ -7,16 +7,16 @@ import Typography from '@mui/material/Typography';
 export default function Order (props) {
   // this function shows the Addresses of the order, distance and price.
       return (
-        <Card sx={{ minWidth: 275, boxShadow: 'none' }}>
+        <Card sx={{ minWidth: 275, boxShadow: "none" }}>
           <CardContent>
             <Typography
               sx={{ fontSize: 14 }}
               color="text.secondary"
               gutterBottom
             >
-              From: {props.order.originAddress}
+              <strong>From:</strong> {props.order.originAddress}
               <br></br>
-              To: {props.order.destinationAddress}
+              <strong>To:</strong> {props.order.destinationAddress}
             </Typography>
             <Typography sx={{ mb: 1.5 }} color="text.secondary">
               Distance:{props.order.distance} km
@@ -25,5 +25,5 @@ export default function Order (props) {
             </Typography>
           </CardContent>
         </Card>
-        );
+      );
 };

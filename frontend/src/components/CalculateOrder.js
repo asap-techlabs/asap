@@ -47,7 +47,7 @@ import Order from "./Order.js"
   render() {
     // renders the information
     return (
-      <div>
+      <div className="container-md" style={{ width: '400'}}>
         { this.orderShow() }
       </div>
     )
