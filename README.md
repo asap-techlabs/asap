@@ -21,5 +21,14 @@ to install dependencies and then,
 and it will open a browser on `http://localhost:3000/`.
 
 Dependencies:
-- Express
+- express
 - nodemon
+- geoapify
+- axios
+- dotenv
+- mongoose
+- react
+- react-dom
+- react-router-dom
+- bootstrap
+
