@@ -7,6 +7,8 @@ import Address from './Address'
 export default function SearchAddress() {
 //  we initialize the state, value, distance and price for the From(origin) & To(destination) addresses,
 // distance in between both and price
+const order = {
+};
   const [state, setState] = useState({
     originAddress: '',
     latOrigin: 0.0,
@@ -58,19 +60,26 @@ export default function SearchAddress() {
       distance: distance / 1000,
     })
     // once the distance is calculated, it calls the function to calculate the price.
+    // There is a 'bug' in the API or the package geolib that calculates distances too far (like 6000 km inside Hamburg!),
+    // when the address doesn't have a postal code, so to avoid weird prices and distances , I set a limit of 60 km,
+    // which is the longer distance inside Hamburg.
+      if( distance > 60) {
+        calculatePrice((60));
+      } else {
       calculatePrice((distance / 1000));
+      }
     }
 
   function calculatePrice(distance) {
     // it calculates the price with a minimum fixed rate plus a value by kilometer
-    let price = 10 + distance*0.5
+    let price = parseFloat((10 + distance*0.5).toFixed(2));
     setPrice({
       price: price
     })
   }
 
   function onSubmit(event) {
-
+    event.preventDefault();
       // this funcion creates the order to submit all the values and send them to the database
     const order = {
       originAddress: state.originAddress,
@@ -83,9 +92,9 @@ export default function SearchAddress() {
       date: new Date(),
       price: price.price
     }
-    // POST request to add an order
+    // POST request to add an order to the database and the redirects to the order in order to get the confirmation from the user.
     axios.post('http://localhost:8000/orders/add', order)
-      .then(res => console.log(res.data));
+      .then(res => window.location.href = `http://localhost:3000/orders/${res.data}`);
   }
 
 // this returns the form visible to the user and call all the functions on this file

@@ -1,21 +1,9 @@
-body {
-	font-family: sans-serif;
-	margin: 2rem;
-	background: lightyellow;
-}
-
-h1 {
-	text-align: center;
-	font-size: 50px;
-	font-weight: bold;
-	padding: 5rem;
-}
-
-.wrapper {
+.card-wrapper {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
-	gap: 4rem;
+	gap: 10rem;
 	justify-content: center;
+	padding: 5em;
 }
 
 .card {
@@ -26,7 +14,6 @@ h1 {
 	justify-content: space-between;
 	transition: transform 200ms ease-in;
 	background: white;
-
 }
 
 .card_image {
