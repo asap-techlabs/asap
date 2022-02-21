@@ -1,0 +1,14 @@
+footer {
+	display: flex;
+	align-items: center;
+	background-color: #21222A;
+	height: 50px;
+    padding: 30px 30px 20px;
+}
+
+.footer-copy {
+	color: white;
+	font-family: inherit;
+	font-size: small;
+
+}

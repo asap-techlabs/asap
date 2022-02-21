@@ -8,8 +8,10 @@ import NewOrderShow from "./components/NewOrderShow";
 import ConfirmOrder from "./components/ConfirmOrder";
 import CardList from './components/CardList';
 import Login from './components/Login';
-import Map from "./components/DisplayMap";
 import Coord from "./components/Coord";
+import 'bootstrap/dist/css/bootstrap.css';
+import HomeScreen from './components/HomeScreen.js'
+
 // this file keeps the routes to the different sections of the app.
 
 function App() {
@@ -18,7 +20,7 @@ function App() {
       <Router>
         <Routes>
           {/*TODO other routes to add  */}
-          <Route path="/" exact element={<CardList />} />
+          <Route path ="/" exact element={<HomeScreen/>} />
           <Route path="/search" element={<SearchAddress />} />
           <Route path="/login" element={<Login />} />
           <Route path="/orders/:id" element={<NewOrderShow />} />
