@@ -2,6 +2,7 @@ import React from "react";
 import CalcOrder from "./CalculateOrder";
 import Button from "@mui/material/Button";
 import { makeStyles } from "@mui/styles";
+import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 
 const useStyles = makeStyles((theme) => ({
@@ -20,19 +21,21 @@ export default function NewOrderShow() {
   return (
     <div className="card border-light mb-3" style={{ marginTop: "50px" }}>
       <h3 className="card-title">Your ride is almost ready !</h3>
-      <CalcOrder key={id} />
-      <CardActions className={classes.marginAutoItem}>
-        <Button
-          variant="outlined"
-          className={classes.marginBetweenElements}
-          to={"/search/"}
-        >
-          Back
-        </Button>
-        <Button href={"/confirm/" + id} variant="contained" color="success">
-          Confirm?
-        </Button>
-      </CardActions>
+      <Card sx={{ minWidth: 175, boxShadow: "none" }}>
+        <CalcOrder />
+        <CardActions className={classes.marginAutoItem}>
+          <Button
+            variant="outlined"
+            className={classes.marginBetweenElements}
+            to={"/search/"}
+          >
+            Back
+          </Button>
+          <Button href={"/confirm/" + id} variant="contained" color="success">
+            Confirm?
+          </Button>
+        </CardActions>
+      </Card>
     </div>
   );
   // should be redirecting to /login/ but the logic behind is not ready yet.

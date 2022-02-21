@@ -36,16 +36,16 @@ export default function SearchAddress() {
       latOrigin: parseFloat(address.properties.lat.toFixed(4)),
       lonOrigin: parseFloat(address.properties.lon.toFixed(4)),
     });
-    console.log(typeof state.latOrigin);
-    console.log(state.latOrigin);
+    // console.log(typeof state.latOrigin);
+    // console.log(state.latOrigin);
   }
 
   function onChangeDestinationAddress(address) {
     // this changes the value of the destination address once selected on the form
     setValue({
       destinationAddress: address.properties.formatted,
-      latDestination: parseFloat(address.properties.lat),
-      lonDestination: parseFloat(address.properties.lon),
+      latDestination: parseFloat(address.properties.lat.toFixed(4)),
+      lonDestination: parseFloat(address.properties.lon.toFixed(4)),
     });
     //and with both addresses call the function to calculate the distance
     // console.log(typeof value.latDestination);
@@ -81,7 +81,7 @@ export default function SearchAddress() {
     }
     // once the distance is calculated, it calls the function to calculate the price.
   }
-  // filterbcountrycode boas by location
+  // filterbcountrycode bias by location
   // function computeDistance([prevLat, prevLong], [lat, long]) {
   //   const prevLatInRad = toRad(prevLat);
   //   const prevLongInRad = toRad(prevLong);
