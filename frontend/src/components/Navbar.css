@@ -1,0 +1,12 @@
+nav {
+	display: flex;
+	align-items: center;
+	background-color: #21222A;
+	height: 90px;
+    padding: 25px 25px 25px 25px;
+}
+
+.nav-icon {
+	margin-right: auto;
+	height: 80px;
+}
