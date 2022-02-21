@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import Order from "./Order.js"
-
+import Card from "@mui/material/Card";
 
   export default class CalcOrder extends Component {
     constructor(props) {
       super(props);
     this.state = {
-
     };
   }
 
@@ -41,15 +40,17 @@ import Order from "./Order.js"
     // component called  at the top.
     let order = {};
     Object.entries(this.state).forEach(([key, value]) => order = value);
-    return <Order order={order} key={order.id}/>;
+    return <Order order={order}/>;
   }
 
   render() {
     // renders the information
     return (
-      <div className="container-md" style={{ width: '400'}}>
-        { this.orderShow() }
+      <div className="container-md" style={{ width: "400" }}>
+        <Card sx={{ minWidth: 175, boxShadow: "none" }}>
+          {this.orderShow()}
+        </Card>
       </div>
-    )
+    );
   }
 }

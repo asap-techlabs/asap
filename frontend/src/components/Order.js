@@ -1,5 +1,4 @@
 import React from 'react';
-import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
@@ -7,7 +6,7 @@ import Typography from '@mui/material/Typography';
 export default function Order (props) {
   // this function shows the Addresses of the order, distance and price.
       return (
-        <Card sx={{ minWidth: 275, boxShadow: "none" }}>
+
           <CardContent>
             <Typography
               sx={{ fontSize: 14 }}
@@ -26,6 +25,6 @@ export default function Order (props) {
               </strong>
             </Typography>
           </CardContent>
-        </Card>
+
       );
 };

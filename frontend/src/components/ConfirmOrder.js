@@ -1,6 +1,7 @@
 import React from "react";
 import CalcOrder from "./CalculateOrder";
 import BasicModal from "./BasicModal";
+import Card from "@mui/material/Card";
 
 export default function ConfirmOrder() {
   // this function displays the imformation as a last time for the user and after click shows a modal that confirms the order.
@@ -8,7 +9,9 @@ export default function ConfirmOrder() {
   return (
     <div className="card border-light mb-3" style={{ marginTop: "50px" }}>
       <h3>Recap</h3>
-      <CalcOrder key={id} />
+      <Card sx={{ minWidth: 175, boxShadow: "none" }}>
+        <CalcOrder key={id} />
+      </Card>
       <BasicModal id={id} />
     </div>
   );

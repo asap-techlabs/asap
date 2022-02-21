@@ -63,7 +63,7 @@ export default function BasicModal(id) {
           </Typography>
           <Button
             variant="contained"
-            href={"/confirm/" + id.id}
+            href={"/map/" + id.id}
             className={classes.marginAutoItem}
           >
             OK
