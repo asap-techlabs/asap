@@ -1,13 +1,28 @@
 .page-container {
-   background-image: url(https://images.unsplash.com/photo-1611822298655-cfc07a6cc1a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2128&q=80);
+    background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1611822298655-cfc07a6cc1a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2128&q=80);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 100vh;
 }
 
-footer {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
+.title-banner {
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  font-size: 32px;
+  font-weight: bold;
+  padding: 150px 0;
+}
+
+.subtitle-banner {
+  font-size: 20px;
+  color: white;
+  opacity: 0.7;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  padding: 50px;
+}
+
+.button-home {
+  margin-top: 16px;
+  padding: 16px 48px;
 }

@@ -1,14 +1,29 @@
 footer {
+	position: -webkit-sticky;
+	position: sticky;
 	display: flex;
 	align-items: center;
 	background-color: #21222A;
-	height: 50px;
   padding: 30px 30px 20px;
+	justify-content: space-between;
+	bottom: 0px;
+	width: 100%;
+	height: 75px;
 }
 
 .footer-copy {
 	color: white;
 	font-family: inherit;
 	font-size: small;
+}
 
+.footer-elements {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+
+}
+
+.footer-elements p {
+  margin: 10px;
 }

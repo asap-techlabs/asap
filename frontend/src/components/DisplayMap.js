@@ -59,7 +59,7 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
     return (
       // renders the map
-      <div>
+      <div className="map-display">
         <div className="sidebarStyle">
           Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
           <div></div>

@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import {getDistance} from 'geolib';
 import Address from './Address'
+import Navbar from "./Navbar.js";
+
 // this function incorporates the search of addresses on the form.
 
 export default function SearchAddress() {
@@ -137,49 +139,60 @@ export default function SearchAddress() {
 
   // this returns the form visible to the user and call all the functions on this file
   return (
-    <div className="container-md" style={{ marginTop: "30px" }}>
-      <h2 className="title-search-form">Where?</h2>
-      <form
-        onSubmit={onSubmit}
-        className="searchForm"
-        style={{ marginTop: "30px" }}
-      >
-        <div className="row mb-3">
-          <label htmlFor="from" className="col-sm-2 col-form-label">
-            From:
-          </label>
-          <div className="col-sm-10">
-            <Address
-              type="text"
-              isOrigin={true}
-              onPlaceSelect={onChangeOriginAddress}
-              searchAddress={state}
-              setOriginAdress={setState}
-            />
+    <div className="page-container">
+      <Navbar />
+      <div className="container-md bg-secondary" style={{ marginTop: "30px", padding: "15px" }}>
+        <h2 className="font-weight-bold text-white title-search-form">
+          Where?
+        </h2>
+        <form
+          onSubmit={onSubmit}
+          className="searchForm"
+          style={{ marginTop: "30px" }}
+        >
+          <div className="row mb-3">
+            <label
+              htmlFor="from"
+              className="font-weight-bold text-white col-sm-2 col-form-label"
+            >
+              From:
+            </label>
+            <div className="col-sm-10">
+              <Address
+                type="text"
+                isOrigin={true}
+                onPlaceSelect={onChangeOriginAddress}
+                searchAddress={state}
+                setOriginAdress={setState}
+              />
+            </div>
           </div>
-        </div>
-        <div className="row mb-3">
-          <label htmlFor="to" className="col-sm-2 col-form-label">
-            To:
-          </label>
-          <div className="col-sm-10">
-            <Address
-              type="text"
-              isOrigin={false}
-              onPlaceSelect={onChangeDestinationAddress}
-              searchAddress={value}
-              setDestinationAdress={setValue}
-              setDistance={setDistance}
-              calculateDistance={calculateDistance}
-              setPrice={setPrice}
-              calculatePrice={calculatePrice}
-            />
+          <div className="row mb-3">
+            <label
+              htmlFor="to"
+              className="font-weight-bold text-white col-sm-2 col-form-label"
+            >
+              To:
+            </label>
+            <div className="col-sm-10">
+              <Address
+                type="text"
+                isOrigin={false}
+                onPlaceSelect={onChangeDestinationAddress}
+                searchAddress={value}
+                setDestinationAdress={setValue}
+                setDistance={setDistance}
+                calculateDistance={calculateDistance}
+                setPrice={setPrice}
+                calculatePrice={calculatePrice}
+              />
+            </div>
           </div>
-        </div>
-        <button type="submit" className="btn btn-success">
-          Next
-        </button>
-      </form>
+          <button type="submit" className="btn btn-success">
+            Next
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
