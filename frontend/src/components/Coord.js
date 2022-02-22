@@ -1,6 +1,6 @@
-import React, { useRef, useEffect, useState, Component } from "react";
+import React, { Component } from "react";
 import Map from "./DisplayMap";
-import CalcOrder from "./CalculateOrder";
+import FetchOrder from "./FetchOrder";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 
@@ -41,7 +41,7 @@ export default class Coord extends Component{
           end={this.state.endCoordinates}
         />
         <Card sx={{ maxWidth: 330, boxShadow: "none" }}>
-          <CalcOrder />
+          <FetchOrder />
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           Pickup in 15 minutes
           <br></br>

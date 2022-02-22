@@ -1,5 +1,5 @@
 import React from "react";
-import CalcOrder from "./CalculateOrder";
+import FetchOrder from "./FetchOrder";
 import BasicModal from "./BasicModal";
 import Card from "@mui/material/Card";
 
@@ -10,7 +10,7 @@ export default function ConfirmOrder() {
     <div className="card border-light mb-3" style={{ marginTop: "50px" }}>
       <h3>Recap</h3>
       <Card sx={{ minWidth: 175, boxShadow: "none" }}>
-        <CalcOrder key={id} />
+        <FetchOrder key={id} />
       </Card>
       <BasicModal id={id} />
     </div>

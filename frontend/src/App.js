@@ -6,7 +6,6 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import SearchAddress from './components/SearchAddress';
 import NewOrderShow from "./components/NewOrderShow";
 import ConfirmOrder from "./components/ConfirmOrder";
-import CardList from './components/CardList';
 import Login from './components/Login';
 import Coord from "./components/Coord";
 import 'bootstrap/dist/css/bootstrap.css';

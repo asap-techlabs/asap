@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, Component } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "./Map.css";
 

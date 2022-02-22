@@ -1,5 +1,5 @@
 import React from "react";
-import CalcOrder from "./CalculateOrder";
+import FetchOrder from "./FetchOrder";
 import Button from "@mui/material/Button";
 import { makeStyles } from "@mui/styles";
 import Card from "@mui/material/Card";
@@ -22,7 +22,7 @@ export default function NewOrderShow() {
     <div className="card border-light mb-3" style={{ marginTop: "50px" }}>
       <h3 className="card-title">Your ride is almost ready !</h3>
       <Card sx={{ minWidth: 175, boxShadow: "none" }}>
-        <CalcOrder />
+        <FetchOrder />
         <CardActions className={classes.marginAutoItem}>
           <Button
             variant="outlined"
