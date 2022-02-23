@@ -3,6 +3,7 @@ import './Navbar.css';
 import logo from "../images/asap-nobg.png"
 import { Link } from "react-router-dom";
 
+//displays the navbar
 function Navbar () {
 	return (
     <nav>

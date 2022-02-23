@@ -17,9 +17,9 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
     const end = props.end; // [latitude, longitude]
 
     // fixes a center, located in Hamburg
-    const [lng, setLng] = useState(9.9);
-    const [lat, setLat] = useState(53.5);
-    const [zoom, setZoom] = useState(9.9);
+    const [lng, setLng] = useState(9.999);
+    const [lat, setLat] = useState(53.575);
+    const [zoom, setZoom] = useState(10.9);
 
 
     useEffect(() => {

@@ -3,7 +3,7 @@ import cors from 'cors';
 const router = express.Router();
 import Order  from '../models/order.model.js';
 
-
+// allows to redirect
 const corsOptions ={
     origin:'http://localhost:3000',
     credentials:true,            //access-control-allow-credentials:true
@@ -12,12 +12,14 @@ const corsOptions ={
 
 router.use(cors(corsOptions));
 
+// allows to find orders
 router.route('/').get((req, res) => {
   Order.find()
     .then(orders => res.json(orders))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+// allows to add a new order
 router.route('/add').post((req, res) => {
   const originAddress = req.body.originAddress;
   const latOrigin = Number(req.body.latOrigin);
@@ -49,37 +51,12 @@ router.route('/add').post((req, res) => {
   .catch(err => res.status(400).json('Error: ' + err));
 });
 
+//allows to find a specific order
 router.route('/:id').get((req, res) => {
   Order.findById(req.params.id)
     .then(order => res.json(order))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/:id').delete((req, res) => {
-  Order.findByIdAndDelete(req.params.id)
-    .then(() => res.json('Order deleted.'))
-    .catch(err => res.status(400).json('Error: ' + err));
-});
-
-router.route('/update/:id').post((req, res) => {
-  Order.findById(req.params.id)
-    .then(order => {
-
-      order.originAddress = req.body.originAddress;
-      order.latOrigin = Number(req.body.latOrigin);
-      order.lonOrigin = Number(req.body.lonOrigin);
-      order.destinationAddress = req.body.destinationAddress;
-      order.latDestination = Number(req.body.latDestination);
-      order.lonDestination = Number(req.body.lonDestination);
-      order.date = Date.parse(req.body.date);
-      order.distance = Number(req.body.distance);
-      order.price = Number(req.body.price);
-
-      order.save()
-        .then(() => res.json('Order updated!'))
-        .catch(err => res.status(400).json('Error: ' + err));
-    })
-    .catch(err => res.status(400).json('Error: ' + err));
-});
 
 export default router;

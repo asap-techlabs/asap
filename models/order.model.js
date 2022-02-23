@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
+//data in an order in the database
 const orderSchema = new Schema ({
   originAddress: { type: String, required: true  },
   latOrigin: { type: Number, required: true },

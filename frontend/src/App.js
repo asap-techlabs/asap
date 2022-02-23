@@ -8,7 +8,6 @@ import NewOrderShow from "./components/NewOrderShow";
 import ConfirmOrder from "./components/ConfirmOrder";
 import Login from './components/Login';
 import Coord from "./components/Coord";
-import 'bootstrap/dist/css/bootstrap.css';
 import HomeScreen from './components/HomeScreen.js'
 
 // this file keeps the routes to the different sections of the app.
@@ -18,7 +17,6 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          {/*TODO other routes to add  */}
           <Route path ="/" exact element={<HomeScreen/>} />
           <Route path="/search" element={<SearchAddress />} />
           <Route path="/login" element={<Login />} />

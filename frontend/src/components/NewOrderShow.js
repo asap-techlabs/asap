@@ -59,5 +59,5 @@ export default function NewOrderShow() {
       </div>
     </div>
   );
-  // should be redirecting to /login/ but the logic behind is not ready yet.
+  // TODO should be redirecting to /login/ but the logic behind is not ready yet.
 }

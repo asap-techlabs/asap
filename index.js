@@ -13,12 +13,13 @@ app.use('/', routes);
 app.use(cors());
 app.use(express.json());
 
-
+// routes for the orders
 app.use('/orders', ordersRoutes);
 
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
+//connection to the database
 // mongoose.connect('mongodb://localhost/asap')
 mongoose.connection.once('open', function(){
   console.log('Connection Successful')
@@ -26,22 +27,7 @@ mongoose.connection.once('open', function(){
   console.log('Connection Failure', error)
 });
 
-// TO DO check the routes we actually want to keep.
-
-// app.get('/', (req, res) => {
-//   res.send('Hello')
-// })
-
-
-
-// app.get('/Anshul', (req, res) => {
-//   res.send('Anshul is great')
-// })
-// // app.listen(8000)
-// // I had to comment this line as it was conflicting with the other port.
-
-// console.log("server is running on http://localhost:8000/")
-
+//backend runs in port (8000)
 app.listen(port, () => {
   console.log(`server is running on http://localhost:${port}/`)
 });

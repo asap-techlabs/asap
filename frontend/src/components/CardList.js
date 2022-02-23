@@ -2,11 +2,11 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 import Cards from './Cards.js'
 
-
+// display the cards with the different possibilities of products to send.
 function CardList() {
 	return (
     <div>
-      <h3 className="font-weight-bold text-white" style={{ marginTop: "250px" }}>
+      <h3 className="font-weight-bold text-white" style={{ marginTop: "260px" }}>
         What do you want to send?
       </h3>
       <div className="card-wrapper" id="cards" style={{ marginTop: "30px" }}>
