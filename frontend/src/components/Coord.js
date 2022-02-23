@@ -4,7 +4,7 @@ import FetchOrder from "./FetchOrder";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import Navbar from "./Navbar.js";
-
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
 // this component recovers only the coordinates of the order, to pass them to the map.
 // calls the map and the order component to display relevant info
@@ -50,7 +50,7 @@ export default class Coord extends Component{
               color="text.secondary"
               gutterBottom
             >
-              Pickup in 15 minutes
+              <AccessTimeIcon /> Pickup in 15 minutes
               <br></br>
               Delivering in less than 1 hour to the destination point.
             </Typography>

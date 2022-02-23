@@ -5,7 +5,7 @@ import { makeStyles } from "@mui/styles";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import Navbar from "./Navbar.js";
-
+import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -33,7 +33,11 @@ export default function NewOrderShow() {
           marginRight: "auto",
         }}
       >
-        <h3 className="card-title">Your ride is almost ready !</h3>
+        <h3 className="card-title">
+          {" "}
+          <DirectionsRunIcon />
+          Your ride is almost ready !
+        </h3>
         <Card sx={{ maxWidth: 450, boxShadow: "none" }}>
           <FetchOrder />
           <CardActions

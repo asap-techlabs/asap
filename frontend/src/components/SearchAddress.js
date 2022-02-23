@@ -3,7 +3,7 @@ import axios from 'axios';
 import {getDistance} from 'geolib';
 import Address from './Address'
 import Navbar from "./Navbar.js";
-
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 // this function incorporates the search of addresses on the form.
 
 export default function SearchAddress() {
@@ -141,10 +141,15 @@ export default function SearchAddress() {
   return (
     <div className="page-container">
       <Navbar />
-      <div className="container-md bg-secondary" style={{ marginTop: "30px", padding: "15px" }}>
+      <div
+        className="container-md bg-secondary"
+        style={{ marginTop: "30px", padding: "15px" }}
+      >
         <h2 className="font-weight-bold text-white title-search-form">
-          Where?
+          <LocationOnIcon />
+            Where?
         </h2>
+
         <form
           onSubmit={onSubmit}
           className="searchForm"
