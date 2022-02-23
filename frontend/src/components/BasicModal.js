@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
 import CardActions from "@mui/material/CardActions";
 
+//style of modal
 const style = {
   position: "absolute",
   top: "30%",

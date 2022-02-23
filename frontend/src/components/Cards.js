@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Cards.css';
 
 
-
+// displays every card from the homepage
 function Cards ({img, title, description}) {
 	return (
 		<div className='card'>

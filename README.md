@@ -12,15 +12,15 @@ and then open in the browser on `http://localhost:8000/`
 
 For the frontend go to the folder `/frontend` and run
 
-`npm install` 
+`npm install`
 
-to install dependencies and then, 
+to install dependencies and then,
 
 `npm start`
 
 and it will open a browser on `http://localhost:3000/`.
 
-Dependencies:
+Main dependencies:
 - express
 - nodemon
 - geoapify

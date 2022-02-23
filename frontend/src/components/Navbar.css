@@ -1,12 +1,17 @@
 nav {
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 	background-color: #21222A;
 	height: 90px;
-    padding: 25px 25px 25px 25px;
+  padding: 25px 25px 25px 25px;
 }
 
 .nav-icon {
 	margin-right: auto;
 	height: 80px;
+}
+
+.button {
+	margin: 10px;
 }
