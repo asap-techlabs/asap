@@ -6,7 +6,7 @@ It is a MERN app.
 
 To run the Node server go to the main folder and run
 
-`node index.js`
+`node index.js` or `nodemon`
 
 and then open in the browser on `http://localhost:8000/`
 
