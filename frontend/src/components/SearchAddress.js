@@ -63,9 +63,9 @@ export default function SearchAddress() {
     // which is the longer distance inside Hamburg.
     if (distance > 60) {
       setDistance({
-        distance: 60,
+        distance: 7.6,
       });
-      calculatePrice(60);
+      calculatePrice(7.6);
     } else {
       setDistance({
         distance: distance,

@@ -5,6 +5,8 @@ import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 import { makeStyles } from "@mui/styles";
 import CardActions from "@mui/material/CardActions";
+import Checkbox from "@mui/material/Checkbox";
+
 
 //style of modal
 const style = {
@@ -29,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "15px",
   },
 }));
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export default function BasicModal(id) {
   // this function displays a modal to confirm the action of the user.
@@ -39,6 +42,8 @@ export default function BasicModal(id) {
 
   return (
     <div className={classes.marginAutoItem}>
+        <Checkbox { ... label} /> The receiver pays the order.
+        <br />
       <CardActions>
         <Button
           onClick={handleOpen}
